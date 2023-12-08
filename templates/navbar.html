@@ -1,0 +1,53 @@
+{% load cart_template_tags %}
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+    aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+    {% if not request.user.is_authenticated %}
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Домашняя страница
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/login/">Логин</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/signup/">Регистрация</a>
+      </li>
+    </ul>
+    {% else %}
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+        <a class="nav-link" href="/">Домашняя страница
+        </a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link waves-effect" href="/order_summary/">{{ request.user|cart_item_count }}
+          <i class="fas fa-shopping-cart"></i>
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/customer_profile/">{{request.user}}
+          <span class="sr-only">(текущий)</span>
+        </a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="/accounts/password/change/">Сброс пароля
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/accounts/logout/">Выход из личного кабинета</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="/request_refund/">Запросить возврат средств</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      {% endif %}
+    </ul>
+  </div>
+</nav>
